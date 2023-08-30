@@ -4,8 +4,7 @@ import {minimatch} from 'minimatch'
 export default (config, { strapi })=> {
   return async (ctx: Context, next: Next) => {
     
-    const pluginName = 'strapi-plugin-recaptcha';
-    console.log('pluginName', pluginName);
+    const pluginName = 'recaptcha';
     const {config, service} = strapi.plugin(pluginName);
     const request = ctx.request as Request;
     const routes: Request[] = config('routes') || [];
