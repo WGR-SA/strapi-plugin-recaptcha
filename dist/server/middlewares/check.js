@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const minimatch_1 = require("minimatch");
 exports.default = (config, { strapi }) => {
     return async (ctx, next) => {
-        const pluginName = 'recaptcha';
+        const pluginName = 'strapi-plugin-recaptcha';
         const { config, service } = strapi.plugin(pluginName);
         const request = ctx.request;
         const routes = config('routes') || [];

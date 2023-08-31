@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 exports.default = ({ strapi }) => ({
     async test(ctx, next) {
-        const pluginName = 'recaptcha';
+        const pluginName = 'strapi-plugin-recaptcha';
         const { config } = strapi.plugin(pluginName);
+        const recaptchaToken = ctx.request.body['g-recaptcha-response'];
         try {
             const response = await axios_1.default.post('https://www.google.com/recaptcha/api/siteverify', null, {
                 params: {
                     secret: config('secretKey'),
-                    response: null,
+                    response: recaptchaToken,
                 },
             });
             const { success } = response.data;

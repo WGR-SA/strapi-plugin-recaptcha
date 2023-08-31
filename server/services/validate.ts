@@ -3,10 +3,11 @@ import axios from 'axios';
 import { Context, Next } from 'koa';
 
 export default ({ strapi }: { strapi: Strapi }) => ({
-  async test(ctx: Context, next: Next):Promise<Context | Next> {
+  async test(ctx, next: Next):Promise<Context | Next> {
 
-    const pluginName = 'recaptcha';
+    const pluginName = 'strapi-plugin-recaptcha';
     const {config} = strapi.plugin(pluginName);
+    const recaptchaToken = ctx.request.body['g-recaptcha-response'];
 
     try {
       const response = await axios.post(
@@ -15,7 +16,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
         {
           params: {
             secret: config('secretKey'),
-            response: null,
+            response: recaptchaToken,
           },
         }
       );
