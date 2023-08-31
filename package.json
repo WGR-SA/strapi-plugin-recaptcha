@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "Recaptcha by wgr",
+    "name": "strapi-plugin-recaptcha",
     "description": "Description of strapi-plugin-recaptcha plugin",
     "kind": "plugin"
   },
