@@ -7,9 +7,10 @@ exports.default = (config, { strapi }) => {
         const { config, service } = strapi.plugin(pluginName);
         const request = ctx.request;
         const routes = config('routes') || [];
+        const requestPath = request.url.split('?')[0];
         // test routes
         let check = false;
-        routes.forEach((route) => check = check || ((0, minimatch_1.minimatch)(request.url, route.url) && request.method === route.method));
+        routes.forEach((route) => check = check || ((0, minimatch_1.minimatch)(requestPath, route.url) && request.method === route.method));
         // go through recaptcha or not
         if (check)
             await service('validate').test(ctx, next);
